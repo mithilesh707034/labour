@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}About Us
+{% endblock title %}
+{% block body %}
+
+<body style="background-color:gray;font-size: large;line-height: 30px;">
+    <div class="about-us">
+    <h1>About Us:</h1>
+    <h3>Hi I am Mithilesh Mandal.</h3>
+    <p><mark>CEO and Founder of doforyou.com </mark> , Our motive is to give employment to the people in a single call. Now a days people who live in city as well and village are facing a lots of issue during find labour for their work . During finding the labour people lost a lot of time so our motive is to do it online. and also labours are facing a lots of problem during search work each and every day. and they have also to leave their home and need to go other states for find work and , other state's  peoples aslo comes to the labour state so our motive to bind all employees at a single plateform so the people can get easily call the labour and do their work.</p>
+    <h1>---Our Employee List---</h1>
+    <div class="container text-center">
+        {% for i in alldata %}
+        <div class="row">
+          <div class="col">
+            {{i.name}}
+          </div>
+          <div class="col">
+            {{i.contact}}
+          </div>
+          <div class="col">
+            {{i.street_name}}
+          </div>
+          <div class="col">
+            {{i.pin}}
+          </div>
+          <div class="col">
+            {{i.work}}
+          </div>
+          
+        </div>
+        {% endfor %}
+      </div>
+       
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Home
+{% endblock title %}
+{% block body %}
+
+<img id="labour1" src="https://images.thequint.com/thequint%2F2022-07%2F874aaa66-e360-443a-8847-c82cd0e1405e%2Fheroimagegif.gif?auto=format%2Ccompress&fmt=webp&width=440&w=1200.gif">
+<!--This is Login form-->
+<form>
+
+    <h1>Employee Login </h1>
+    <fieldset>
+        <lable for="username">Enter UserId:</lable><br>
+        <input type="email" name="username" id="username"><br><br>
+        <lable for="pswd">Enter Password:</lable><br>
+        <input type="password" name="pswd" id="pswd"><br><br>
+        <!--Captcha-->
+        <div class="captcha-box">
+            <lable for="captcha">Enter Chptcha</lable><br>
+            <input type="text" name="captcha" id="captcha" placeholder="Type Here">
+            <button type="button" onclick="GenerateCaptcha()" class="captch-refresh"><span
+                    class="material-symbols-outlined">autorenew</span></button>
+        </div><br><br>
+        <input type="text" id="newcaptcha1">
+
+        <input type="submit" onclick="ValidCaptcha()" value="Login" id="submit">
+
+    </fieldset>
+</form>
+<br><br><br><br><br><br>
+<script>
+    var hidemenue = document.getElementById("hidemenue");
+    hidemenue.style.maxHeight = "60px";
+    function togglemenue() {
+
+        if (hidemenue.style.maxHeight == "60px") {
+            hidemenue.style.maxHeight = "325px";
+            hidemenue.style.display = "block";
+            hidemenue.style.zIndex = "6"
+        }
+        else {
+            hidemenue.style.maxHeight = "60px";
+            hidemenue.style.display = "none";
+
+        }
+    }
+</script>
+<body onload="GenerateCaptcha()">
+    <script>
+        /* Function to Generat Captcha */
+        function GenerateCaptcha() {
+            var chr1 = Math.ceil(Math.random() * 10) + '';
+            var chr2 = Math.ceil(Math.random() * 10) + '';
+            var chr3 = Math.ceil(Math.random() * 10) + '';
+
+            var str = new Array(4).join().replace(/(.|$)/g, function () { return ((Math.random() * 36) | 0).toString(36)[Math.random() < .5 ? "toString" : "toUpperCase"](); });
+            var captchaCode = str + chr1 + ' ' + chr2 + ' ' + chr3;
+            document.getElementById("newcaptcha1").value = captchaCode
+        }
+
+        /* Validating Captcha Function */
+        function ValidCaptcha() {
+            var str1 = removeSpaces(document.getElementById('newcaptcha1').value);
+            var str2 = removeSpaces(document.getElementById('captcha').value);
+
+            if (str1 == str2)
+                document.write("Successfully Login");
+            else
+                document.write("Failed Login");
+        }
+
+        /* Remove spaces from Captcha Code */
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+
+        
+    </script>
+
+{% endblock %}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" ,initial-scale="1.0">
+    <title>Registeration:</title>
+    <link rel="icon" type="image" href="static/ima/love1.jpg">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: aqua;
+
+        }
+
+        form {
+
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            line-height: 20px;
+            height: 700px;
+            width: 500px;
+            border: 3px solid yellow;
+            border-radius: 10px;
+            position: relative;
+            /* margin:30px 350px 0px 350px; */
+            background-color: gray;
+            /* justify-content: center; */
+
+        }
+
+        fieldset {
+
+            border-radius: 15px;
+            width: 300px;
+            height: 600px;
+            position: relative;
+            text-align: center;
+            left: 15px;
+            top: 20px;
+            background-color: gray;
+        }
+
+        #lname,#street-name,#ps,#district,#state,#pin,#work,#contact,#pswd1,#pswd2 {
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 3px;
+            height: 15px;
+        }
+
+        .work-section {
+            position: relative;
+            text-align: left;
+            left: 120px;
+
+        }
+
+        #submit1 {
+            height: 20px;
+            font-weight: bold;
+            color: blue;
+
+        }
+
+        form h1 {
+            text-align: center;
+            color: black;
+            padding-top: 10px;
+        }
+        #p1{
+            background-color:yellow;
+            border: 2px solid rgb(11, 11, 11);
+            border-radius: 15px;
+            width:300px;
+            color: black;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>
+        <marquee>Welcome in Registeration section</marquee>
+    </h1>
+    <center>
+        <form method="post" action="{% url 'formsubmit' %}">
+            {% csrf_token %}
+            <p id="p1">{{n}}</p>
+            <h1>Labour Registeration</h1>
+            <fieldset>
+                <!-- Labour Personal Details section-->
+                <lable for="lname">Name :</lable><br>
+                <input type="text" name="name" id="lname"><br>
+                <lable for="contact">Contact:</lable><br>
+                <input type="text" name="contact" id="contact"><br>
+                <lable for="pswd">Set Password:</lable><br>
+                <input type="password" id="pswd1" name="password"><br>
+                <lable for="pswd">Confirm Password:</lable><br>
+                <input type="password" id="pswd2" name="password">
+
+                <div class="address">
+                    <!-- Labour Address Section-->
+                    <lable for="street-name">Address :</lable><br>
+                    <input type="text" name="street_name" id="street-name"><br>
+                    <lable for="ps">Police Station :</lable><br>
+                    <input type="text" name="police_station" id="ps"><br>
+                    <lable for="district">City :</lable><br>
+                    <input type="text" name="city" id="district"><br>
+                    <lable for="state">State :</lable><br>
+                    <input type="text" name="state" id="state"><br>
+                    <lable for="pin">PIN Code :</lable><br>
+                    <input type="text" name="pin" id="pin"><br>
+                </div><br>
+                <div class="work-section">
+                    <h4>Work</h4>
+                    <!--Labour Work section-->
+                    <input type="checkbox" name="work" id="work1" value="building">
+                    <label for="work1">Building:</label><br>
+                    <input type="checkbox" name="work" id="work2" value="khet">
+                    <label for="work2">Khet:</label><br>
+                    <input type="checkbox" name="work" id="work3" value="road">
+                    <label for="work3">Road:</label><br>
+                    <input type="checkbox" name="work" id="work4" value="cook">
+                    <label for="work4">Cook:</label><br>
+                    <input type="checkbox" name="work" id="work5" value="driver">
+                    <label for="work5">Driver:</label><br>
+                </div><br>
+                <input type="submit"id="submit1">
+            </fieldset>
+        </form>
+    </center>
+    <script>
+        // Registration Password Compare
+        function pswdcompare() {
+            var ps1 = document.getElementById('pswd1').value;
+            var ps2 = document.getElementById('pswd2').value;
+            if (ps1 == ps2)
+                document.write("You are registered successfully:")
+            else
+                document.write("Both Password are not match please Try Again")
+        }
+    </script>
+</body>
+
+</html>

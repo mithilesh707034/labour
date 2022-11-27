@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Home
+{% endblock title %}
+{% block body %}
+<link rel="icon" type="image" href="ima/love1.jpg">
+
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body onload="GenerateCaptcha()">
+    <script>
+        /* Function to Generat Captcha */
+        function GenerateCaptcha() {
+            var chr1 = Math.ceil(Math.random() * 10) + '';
+            var chr2 = Math.ceil(Math.random() * 10) + '';
+            var chr3 = Math.ceil(Math.random() * 10) + '';
+
+            var str = new Array(4).join().replace(/(.|$)/g, function () { return ((Math.random() * 36) | 0).toString(36)[Math.random() < .5 ? "toString" : "toUpperCase"](); });
+            var captchaCode = str + chr1 + ' ' + chr2 + ' ' + chr3;
+            document.getElementById("newcaptcha1").value = captchaCode
+        }
+
+        /* Validating Captcha Function */
+        function ValidCaptcha() {
+            var str1 = removeSpaces(document.getElementById('newcaptcha1').value);
+            var str2 = removeSpaces(document.getElementById('captcha').value);
+
+            if (str1 == str2)
+                
+                window. location. href = '/login';
+            else
+                document.write("Failed Login");
+        }
+
+        /* Remove spaces from Captcha Code */
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+
+        
+    </script>
+
+    <!--This is Login form-->
+    <center>
+    <form method="post" action="/login">
+        {% csrf_token %}
+        <h1>Employee Login </h1>
+        <fieldset>
+            <lable for="username">Enter UserId:</lable><br>
+            <input type="text" name="username" id="username"><br><br>
+            <lable for="pswd">Enter Password:</lable><br>
+            <input type="password" name="password" id="pswd"><br><br>
+            <!--Captcha-->
+            <div class="captcha-box">
+                <lable for="captcha">Enter Chptcha</lable><br>
+                <input type="text" name="captcha" id="captcha" placeholder="Type Here">
+                <button type="button" onclick="GenerateCaptcha()" class="captch-refresh"><span
+                        class="material-symbols-outlined">autorenew</span></button>
+            </div><br><br>
+            <input type="text" id="newcaptcha1" name="newcaptcha1">
+
+            <input type="submit">
+            <!-- onclick="ValidCaptcha()" value="Login" id="submit"> -->
+
+        </fieldset>
+    </form>
+    
+</center>
+<br><br><br><br><br><p></p>
+    {% endblock %}
